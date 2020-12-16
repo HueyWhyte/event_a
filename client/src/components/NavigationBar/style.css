@@ -1,0 +1,27 @@
+.NavigationBar {
+  width: inherit;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  position: sticky;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 2em 0 rgba(64, 74, 128, 0.15);
+  padding: 0 1em;
+}
+
+.nav_btn {
+  margin: 5px;
+  color: var(--deep-blue);
+  transition-duration: 0.5s;
+  font-size: 17px;
+}
+
+.active_nav_btn {
+  color: var(--blue);
+  text-shadow: 0px 0px 2px #8a8af3;
+  transition-duration: 0.5s;
+}

@@ -1,0 +1,41 @@
+.EventDetails {
+  width: 98%;
+  min-height: calc(100vh - 61px);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event_details_banner {
+  height: 300px;
+  width: inherit;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 2em 0 rgba(64, 74, 128, 0.15);
+}
+
+.event_details_banner p {
+  font-size: 1.3em;
+}
+
+.event_details_banner p,
+.event_details_banner h1 {
+  text-shadow: none;
+}
+
+.event_feeds_container {
+  display: flex;
+  width: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.4em;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

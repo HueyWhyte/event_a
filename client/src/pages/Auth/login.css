@@ -1,0 +1,15 @@
+.form_container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form_container input {
+  border: none;
+  margin: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 0.6em 0 rgba(156, 159, 173, 0.363);
+  background-color: white;
+  font-size: 17px;
+}
