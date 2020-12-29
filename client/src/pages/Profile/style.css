@@ -1,12 +1,3 @@
-.Profile {
-  width: 98%;
-  min-height: calc(100vh - 61px);
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .profile_cover {
   height: 300px;
   width: inherit;

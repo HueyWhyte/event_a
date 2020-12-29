@@ -15,13 +15,14 @@ const Home: React.FC = () => {
   if (error) return <h1>Error...</h1>;
 
   return (
-    <div className="Home">
+    <div className="page_container">
       <section
         style={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-between",
           marginTop: "0.4em",
+          marginBottom: "0.4em",
           width: "inherit",
           marginRight: "auto",
           marginLeft: "auto",

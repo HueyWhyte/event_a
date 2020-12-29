@@ -28,7 +28,7 @@ const Profile = () => {
   let Feeds: [FeedProps] = feeds.getUserFeeds;
 
   return (
-    <div className="Profile">
+    <div className="page_container">
       <section
         className="profile_cover"
         style={{

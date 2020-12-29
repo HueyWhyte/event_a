@@ -14,7 +14,7 @@ const Events: React.FC = () => {
   if (error) return <h1>Error...</h1>;
 
   return (
-    <div className="Events">
+    <div className="page_container">
       <section
         style={{
           display: "flex",

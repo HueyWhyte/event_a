@@ -79,7 +79,7 @@ module.exports = {
 
       if (!event) throw new UserInputError("Event not Found!");
 
-      if (event.organizer == user.id) {
+      if (event.organizer.toString() == user.id.toString()) {
         try {
           await event.remove();
           return "Event deleted";

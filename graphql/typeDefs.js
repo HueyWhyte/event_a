@@ -2,6 +2,7 @@ const { gql } = require("apollo-server");
 
 module.exports = gql`
   type User {
+    #user's id
     id: ID!
     username: String!
     email: String!
@@ -31,11 +32,12 @@ module.exports = gql`
 
   type Media {
     id: ID!
-    mediaUrl: String!
+    mediaUrl: String
   }
 
   type Feed {
     id: ID!
+    """ Body of the feed"""
     body: String!
     user: User!
     event: Event!
@@ -84,6 +86,7 @@ module.exports = gql`
     addFeed(body: String!, eventId: String!, mediaUrl: String): Feed!
     updateFeed(feedId: ID!, body: String!): Feed!
     deleteFeed(feedId: ID!): String!
+    searchFeeds(searchWord: String!): [Feed]
 
     addComment(feedId: ID!, body: String!): Feed!
     updateComment(feedId: ID!): Feed!

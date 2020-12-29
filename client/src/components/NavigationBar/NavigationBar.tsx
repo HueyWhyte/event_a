@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./style.css";
+import SearchBar from "../SearchBar/SearchBar";
+
 const userId = localStorage.getItem("userId");
 
 const NavigationBar: React.FC = () => {
@@ -10,6 +12,8 @@ const NavigationBar: React.FC = () => {
       <div>
         <h1>LOGO</h1>
       </div>
+
+      <SearchBar />
 
       <div style={{ display: "flex" }}>
         <NavLink

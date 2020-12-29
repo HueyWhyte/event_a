@@ -1,15 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TimeAgo from "react-timeago";
 
 import "./style.css";
 import { FeedProps } from "../../assets/types";
 
+// const timeDiff = (current, previous) => {
+//   let msPerMin = 60 * 1000;
+//   let msPerHr = msPerMin * 60;
+//   let msPerDay = msPerHr * 24;
+//   let msPerMon = msPerDay * 30;
+//   let msPerYr = msPerMon * 365;
+
+//   let elapsed = current - previous;
+// };
+
+// const timeSince = (timestamp) => {
+
+// };
+
 const FeedCard: React.FC<FeedProps> = ({
+  id,
   body,
   timestamp,
   user,
   event,
   media,
+  comments,
 }) => {
   return (
     <div className="FeedCard">
@@ -31,25 +48,17 @@ const FeedCard: React.FC<FeedProps> = ({
             }}
           >
             <p>@{user.username}</p>
-            <p style={{ fontSize: 12 }}>{timestamp}</p>
+            <TimeAgo style={{ fontSize: 12 }} date={parseInt(timestamp)} />
           </div>
         </Link>
-        <Link
-          to={`/events/${event.id}`}
-          style={{
-            color: "var(--blue)",
-            margin: 5,
-            fontStyle: "normal",
-            fontSize: 12.5,
-            backgroundColor: "#e1e1e1",
-            borderRadius: 12,
-            padding: "1px 4px",
-            marginRight: "auto",
-          }}
-        >
+        <Link to={`/events/${event.id}`} className="event_link">
           e_@{event.title}
         </Link>
       </section>
+
+      <Link to={`/feeds/${id}`} style={{ margin: 8 }}>
+        {body}
+      </Link>
 
       {media &&
         media.map((med) => (
@@ -57,15 +66,13 @@ const FeedCard: React.FC<FeedProps> = ({
             key={med.id}
             src={med.mediaUrl}
             alt={med.id}
-            style={{ width: "100%", borderRadius: 12 }}
+            style={{ width: "100%", borderRadius: 12, marginBottom: 8 }}
           />
         ))}
 
-      <p style={{ margin: 8 }}>{body}</p>
-
       <section className="actions_container">
         <p>Like</p>
-        <p>Comments</p>
+        <p>{comments.length} Comments</p>
         <p>Pin</p>
       </section>
     </div>

@@ -1,12 +1,3 @@
-.EventDetails {
-  width: 98%;
-  min-height: calc(100vh - 61px);
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .event_details_banner {
   height: 300px;
   width: inherit;
@@ -36,6 +27,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.4em;
+  margin-bottom: 0.4em;
   flex-wrap: wrap;
   justify-content: space-between;
 }

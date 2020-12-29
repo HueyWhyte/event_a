@@ -20,23 +20,31 @@ const EventCard: React.FC<EventProps> = ({
         style={{ width: "100%", borderRadius: 12 }}
       />
 
-      <Link
-        to={`/events/${id}`}
+      <section
         style={{
-          color: "var(--blue)",
-          fontStyle: "normal",
-          fontSize: 14,
-          backgroundColor: "#e1e1e1",
-          borderRadius: 12,
-          padding: "1px 4px",
-          margin: 8,
-          marginRight: "auto",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        e_@{title}
-      </Link>
+        <Link
+          to={`/events/${id}`}
+          style={{
+            color: "var(--blue)",
+            fontStyle: "normal",
+            fontSize: 14,
+            backgroundColor: "#e1e1e1",
+            borderRadius: 12,
+            padding: "1px 4px",
+            margin: 8,
+            marginRight: "auto",
+          }}
+        >
+          e_@{title}
+        </Link>
 
-      {/* <p style={{}}>{title}</p> */}
+        <p>Map</p>
+      </section>
 
       <section
         style={{

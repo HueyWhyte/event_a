@@ -6,7 +6,7 @@ const checkAuth = require("../../utils/checkAuth");
 
 module.exports = {
   Query: {
-    getFeeds: async () => {
+      getFeeds: async () => {
       try {
         let feeds = await Feed.find()
           .sort("-timestamp")
@@ -22,6 +22,7 @@ module.exports = {
       try {
         let feed = await Feed.findById(feedId)
           .populate("user")
+          .populate("comments.user")
           .populate("event");
         return feed;
       } catch (error) {
@@ -117,6 +118,18 @@ module.exports = {
         }
       } else {
         throw new AuthenticationError("Action not Allowed!");
+      }
+    },
+
+    searchFeeds: async (_, {searchWord}) => {
+      try {
+        let feeds = await Feed.find({body: searchWord})
+          .sort("-timestamp")
+          .populate("user")
+          .populate("event").limit(6)
+        return feeds;
+      } catch (error) {
+        throw new Error(error);
       }
     },
   },

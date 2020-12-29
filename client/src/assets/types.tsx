@@ -1,28 +1,48 @@
+export type UserProps = {
+  /** ID of user */
+  id: string;
+  /** user's username */
+  username: string;
+  /** user's email address */
+  email: string;
+  /** user's profile image url */
+  profileImgUrl: string;
+  /** user's cover image url */
+  coverImgUrl: string;
+  token: string;
+};
+
 export type FeedProps = {
   /** the ID of the feed */
   id: string;
   /** body of the feed */
   body: string;
+  /** timestamp of the feed */
   timestamp: string;
   /** contains list of all media of a feed */
   media: [
     {
       id: string;
+      /** media url */
       mediaUrl: string;
     }
   ];
-  /** Titlew and ID of an Event */
+  /** Title and ID of an Event */
   event: {
     id: string;
+    /** Event title */
     title: string;
   };
   /** User that posted the feed: Object{} */
-  user: {
-    id: string;
-    username: string;
-    profileImgUrl: string;
-    coverImgUrl: string;
-  };
+  user: UserProps;
+  comments: [
+    {
+      id: string;
+      body: string;
+      timestamp: string;
+      user: UserProps;
+    }
+  ];
 };
 
 export type EventProps = {
@@ -31,18 +51,5 @@ export type EventProps = {
   date: string;
   duration: string;
   coverImgUrl: string;
-  organizer: {
-    id: string;
-    username: string;
-    profileImgUrl: string;
-  };
-};
-
-export type UserProps = {
-  id: string;
-  username: string;
-  email: string;
-  profileImgUrl: string;
-  coverImgUrl: string;
-  token: string;
+  organizer: UserProps;
 };

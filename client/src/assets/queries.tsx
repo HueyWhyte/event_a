@@ -12,6 +12,7 @@ export const GET_EVENT = gql`
       organizer {
         id
         username
+        profileImgUrl
       }
     }
   }
@@ -62,6 +63,25 @@ export const GET_EVENT_FEEDS = gql`
   }
 `;
 
+export const ADD_EVENT = gql`
+  mutation addEvent($title: String!, $date: String!, $duration: String!) {
+    addEvent(title: $title, date: $date, duration: $duration) {
+      id
+      title
+      date
+      duration
+      coverImgUrl
+      timestamp
+    }
+  }
+`;
+
+export const DELETE_EVENT = gql`
+  mutation deleteEvent($eventId: ID!) {
+    deleteEvent(eventId: $eventId)
+  }
+`;
+
 export const GET_FEEDS = gql`
   query getFeeds {
     getFeeds {
@@ -76,7 +96,6 @@ export const GET_FEEDS = gql`
         id
         username
         profileImgUrl
-        coverImgUrl
       }
       event {
         id
@@ -85,6 +104,80 @@ export const GET_FEEDS = gql`
       }
       comments {
         id
+      }
+    }
+  }
+`;
+
+export const GET_FEED = gql`
+  query getFeed($feedId: String!) {
+    getFeed(feedId: $feedId) {
+      id
+      body
+      timestamp
+      media {
+        id
+        mediaUrl
+      }
+      user {
+        id
+        username
+        profileImgUrl
+      }
+      event {
+        id
+        title
+      }
+      comments {
+        id
+        body
+        user {
+          id
+          username
+          coverImgUrl
+        }
+        timestamp
+      }
+    }
+  }
+`;
+
+export const SEARCH = gql`
+  mutation searchFeeds($searchWord: String!) {
+    searchFeeds(searchWord: $searchWord) {
+      id
+      body
+      timestamp
+      user {
+        id
+        username
+        profileImgUrl
+      }
+      event {
+        id
+        title
+      }
+    }
+  }
+`;
+
+export const ADD_FEED = gql`
+  mutation addFeed($body: String!, $eventId: String!) {
+    addFeed(body: $body, eventId: $eventId) {
+      id
+      body
+      timestamp
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($feedId: ID!, $body: String!) {
+    addComment(feedId: $feedId, body: $body) {
+      id
+      comments {
+        id
+        body
       }
     }
   }
@@ -182,16 +275,8 @@ export const UPDATE_ACCOUNT = gql`
   }
 `;
 
-// query getUser {
-//   getUser(userId: "5fd630651160e72db81b7808") {
-//     id
-//     username
-//     email
-//     profileImgUrl
-//     coverImgUrl
-//   }
-// }
-
-// mutation deleteAccount {
-//   deleteAccount(password: "Famous10")
-// }
+export const DELETE_ACCOUNT = gql`
+  mutation deleteAccount($password: String!) {
+    deleteAccount(password: $password)
+  }
+`;

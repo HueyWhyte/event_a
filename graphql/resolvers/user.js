@@ -7,7 +7,7 @@ const checkAuth = require("../../utils/checkAuth");
 
 const genToken = (user) => {
   return jwt.sign({ id: user.id }, "my_josnwebtoken_secret-_*KEY*", {
-    expiresIn: "24h",
+    expiresIn: "10d",
   });
 };
 

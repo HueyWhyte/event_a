@@ -42,8 +42,20 @@ button,
 input,
 textarea {
   outline: none;
+  font-family: "Nunito", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: 700;
 }
 
 a {
   text-decoration: none;
+}
+
+.page_container {
+  width: 98%;
+  min-height: calc(100vh - 61px);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }

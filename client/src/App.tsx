@@ -9,6 +9,7 @@ import Events from "./pages/Events";
 import FeedDetails from "./pages/FeedDetails";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import AllMutation from "./components/AllMutation";
 
 export default class App extends Component {
   render() {
@@ -24,6 +25,8 @@ export default class App extends Component {
           <Route exact path="/profile/:userId" component={Profile} />
 
           <Route exact path="/events" component={Events} />
+
+          <Route exact path="/allmutations" component={AllMutation} />
 
           <Route exact path="/login" component={Login} />
 

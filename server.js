@@ -1,5 +1,9 @@
 const { ApolloServer } = require("apollo-server");
+const express = require('express')
+const path= require('path')
 const mongoose = require("mongoose");
+
+const app = express()
 
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
@@ -24,3 +28,12 @@ mongoose
   .then((res) => {
     console.log(`Server running at ${res.url}`);
   });
+
+
+if (process.env.NODE_ENV == 'production') {
+  app.use(express.static('client/build'))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+}
