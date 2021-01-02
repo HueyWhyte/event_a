@@ -222,6 +222,18 @@ export const GET_USER = gql`
   }
 `;
 
+export const LOAD_USER = gql`
+  query loadUser {
+    loadUser {
+      id
+      username
+      email
+      profileImgUrl
+      coverImgUrl
+    }
+  }
+`;
+
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password) {

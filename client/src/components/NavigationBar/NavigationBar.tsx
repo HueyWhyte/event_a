@@ -1,12 +1,25 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./style.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-const userId = localStorage.getItem("userId");
+type UserData = {
+  data: {
+    isAuthenticated: boolean;
+    user: {
+      id: string;
+    };
+  };
+};
 
-const NavigationBar: React.FC = () => {
+const NavigationBar: React.FC<UserData> = ({
+  data: {
+    isAuthenticated,
+    user: { id },
+  },
+}) => {
   return (
     <div className="NavigationBar">
       <div>
@@ -32,12 +45,12 @@ const NavigationBar: React.FC = () => {
         >
           Events
         </NavLink>
-        {userId ? (
+        {isAuthenticated ? (
           <NavLink
             exact
             className="nav_btn"
             activeClassName="active_nav_btn"
-            to={`/profile/${userId}`}
+            to={`/profile/${id}`}
           >
             Profile
           </NavLink>
@@ -47,4 +60,8 @@ const NavigationBar: React.FC = () => {
   );
 };
 
-export default NavigationBar;
+const mapStateToProps = (state: any) => ({
+  data: state.authReducer,
+});
+
+export default connect(mapStateToProps)(NavigationBar);

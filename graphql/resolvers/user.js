@@ -13,6 +13,20 @@ const genToken = (user) => {
 
 module.exports = {
   Query: {
+    loadUser: async (_, {}, context) => {
+      const decoded = checkAuth(context);
+
+      const user = await User.findById(decoded.id);
+      if (!user) throw new UserInputError("User does not exist!");
+
+      if (user) {
+        return {
+          ...user._doc,
+          id: user._id,
+        };
+      }
+    },
+
     getUser: async (_, { userId }, context) => {
       let user = await User.findById(userId);
 

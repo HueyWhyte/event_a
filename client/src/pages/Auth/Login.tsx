@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 import "./login.css";
 import { UserProps } from "../../assets/types";
 import { LOGIN } from "../../assets/queries";
+import { logInUser } from "../../redux/actions/auth";
 
-const Login: React.FC = () => {
+const Login: React.FC<{ isAuthenticated: boolean }> = ({ isAuthenticated }) => {
+  const dispatch = useDispatch();
   const [values, setValues] = useState({});
 
   const [addUser, { loading }] = useMutation(LOGIN, {
     update(_, result) {
       let User: UserProps = result.data.login;
-      console.log(User);
-      localStorage.setItem("x-auth-token", User.token);
-      localStorage.setItem("userId", User.id);
-
-      <Redirect to="/" />;
+      dispatch(logInUser(User));
     },
     onError(err) {
       console.log(err.graphQLErrors[0].extensions);
@@ -35,6 +35,10 @@ const Login: React.FC = () => {
     e.preventDefault();
     addUser();
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div>
@@ -76,4 +80,7 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state: any) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+});
+export default connect(mapStateToProps)(Login);

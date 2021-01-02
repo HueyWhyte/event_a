@@ -4,8 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { Provider } from "react-redux";
 
-let token: string = `${localStorage.getItem("x-auth-token")}`;
+import store from "./redux/store";
+const token: string = `${localStorage.getItem("x-auth-token")}`;
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/",
@@ -18,7 +20,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

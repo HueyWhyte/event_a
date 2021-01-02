@@ -54,6 +54,7 @@ module.exports = gql`
     getFeeds: [Feed]!
     getFeed(feedId: String!): Feed!
     getUser(userId: ID): User!
+    loadUser: User!
   }
 
   type Mutation {

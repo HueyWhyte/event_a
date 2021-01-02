@@ -5,20 +5,6 @@ import TimeAgo from "react-timeago";
 import "./style.css";
 import { FeedProps } from "../../assets/types";
 
-// const timeDiff = (current, previous) => {
-//   let msPerMin = 60 * 1000;
-//   let msPerHr = msPerMin * 60;
-//   let msPerDay = msPerHr * 24;
-//   let msPerMon = msPerDay * 30;
-//   let msPerYr = msPerMon * 365;
-
-//   let elapsed = current - previous;
-// };
-
-// const timeSince = (timestamp) => {
-
-// };
-
 const FeedCard: React.FC<FeedProps> = ({
   id,
   body,

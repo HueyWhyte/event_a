@@ -1,9 +1,9 @@
 const { ApolloServer } = require("apollo-server");
-const express = require('express')
-const path= require('path')
+const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 
-const app = express()
+const app = express();
 
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
@@ -16,24 +16,22 @@ const server = new ApolloServer({
 
 const PORT = process.env.PORT | 5000;
 mongoose
-  .connect("mongodb://localhost:27017/events_around", {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    process.env.NODE_ENV === "production"
+      ? "mongodb+srv://HueyWhyte:Famous10@whyte.wdm4x.mongodb.net/whyte?retryWrites=true&w=majority"
+      : "mongodb://localhost:27017/events_around",
+    {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Connected to database");
     return server.listen(PORT);
   })
   .then((res) => {
-    console.log(`Server running at ${res.url}`);
+    console.log(
+      `Server running at http://localhost:${PORT}${server.graphqlPath}`
+    );
   });
-
-
-if (process.env.NODE_ENV == 'production') {
-  app.use(express.static('client/build'))
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
-  })
-}
