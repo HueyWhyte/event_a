@@ -10,7 +10,7 @@ import store from "./redux/store";
 const token: string = `${localStorage.getItem("x-auth-token")}`;
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/",
+  uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
   headers: {
     "x-auth-token": token,
